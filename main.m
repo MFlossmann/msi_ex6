@@ -21,6 +21,7 @@ ylabel('Total frequency')
 x0 = [1,1]; % Make a starting guess at the solution
 options= [];
 %anonymous function
+%Erster Term darf wegen Abh. von lambda und k nicht gestrichen werden bei Minimierung
 obj = @(x) length(wind_speed)*log(x(1)/x(2)) + sum( (x(2)-1).*log(x(1)./wind_speed) + (wind_speed./x(1)).^x(2));
 x =fmincon(obj,x0,[],[],[],[],[],[],@confun,options);
 
