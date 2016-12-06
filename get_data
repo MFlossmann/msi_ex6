@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 wget ftp://ftp-cdc.dwd.de/pub/CDC/observations_germany/climate/hourly/wind/historical/stundenwerte_FF_01346_19550101_20151231_hist.zip
 
