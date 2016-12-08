@@ -38,7 +38,15 @@ figure;
 speed_power_matrix = [0:25 25;0 0 3 25 82 174 321 532 815 1180 1580 1900 2200 2480 2700 2850 2950 3020 3020 3020 3020 3020 3020 3020 3020 3020 0];
 plot(speed_power_matrix(1,:),speed_power_matrix(2,:),'x')
 
-x= [0:25 25];
-y= [0 0 3 25 82 174 321 532 815 1180 1580 1900 2200 2480 2700 2850 2950 3020 3020 3020 3020 3020 3020 3020 3020 3020 0];
+wind_values= [0:25 25];
+power_values = [0 0 3 25 82 174 321 532 815 1180 1580 1900 2200 2480 2700 2850 2950 3020 3020 3020 3020 3020 3020 3020 3020 3020 0];
 
-expect= weibull_fit(x)*y';
+expect_naive = weibull_fit(wind_values)*power_values';
+
+% Trapezoid approach
+power_function = power_values .* weibull_fit(wind_values);
+bar_height = power_function(1:end - 1) + diff(power_function) / 2;
+bar_width = diff(wind_values);
+
+expect_trapezoid = bar_width * bar_height'
+
