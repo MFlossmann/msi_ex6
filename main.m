@@ -34,3 +34,7 @@ x =fmincon(obj,x0,[],[],[],[],[],[],@confun,options);
 weibull_fit= @(v) (x(2)/x(1)).*(v./x(1)).^(x(2)-1).*exp(-(v./x(1)).^x(2));
 hold on;
 plot(linspace(0,30,100), (weibull_fit(linspace(0,30,100)))*8479)
+
+figure;
+speed_power_matrix = [0:25 25;0 0 3 25 82 174 321 532 815 1180 1580 1900 2200 2480 2700 2850 2950 3020 3020 3020 3020 3020 3020 3020 3020 3020 0];
+plot(speed_power_matrix(1,:),speed_power_matrix(2,:),'x')
