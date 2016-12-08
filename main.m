@@ -4,10 +4,15 @@
 %Michael Floßmann 4348852
 %Stephan Schraivogel, Mn.: 4318010
 
+
+%% Import data
+clear all; clc; close all;
+
 wind_speed = import_data('produkt_wind_Terminwerte_19550101_20151231_01346.txt');
 
 wind_speed= wind_speed(wind_speed~= -999);
 
+%% Run stuff
 
 figure(1)
 histogram(wind_speed);
