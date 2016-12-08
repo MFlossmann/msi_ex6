@@ -4,7 +4,6 @@
 %Michael Floßmann 4348852
 %Stephan Schraivogel, Mn.: 4318010
 
-
 %% Import data
 clear all; clc; close all;
 
@@ -15,7 +14,7 @@ wind_speed= wind_speed(wind_speed~= -999);
 %% Run stuff
 
 figure(1)
-histogram(wind_speed);
+h= histogram(wind_speed);
 title('Wind speed histogram')
 lx= xlabel('$\frac{m}{s}$');
 set(lx,'Interpreter','Latex');
