@@ -6,6 +6,8 @@
 \usepackage{mathtools}
 \usepackage{amsfonts}
 
+\pagestyle{empty}
+
 \newcommand{\argmin}{\arg\!\min} 
 
 \begin{document}
@@ -50,7 +52,7 @@
     \exp
     \left(
       -\frac{v_i}{\lambda}
-    \right)
+    \right)^k
   \right) \\
   &=-N\cdot\ln
   \left(
@@ -76,18 +78,34 @@
 
 \paragraph{1.b)}
 \[\boxed{
-[\hat{\lambda},\hat{k}]=\argmin_{\lambda,k}\sum^N_{i=1}(1-k)\ln
+    [\hat{\lambda},\hat{k}]=\argmin_{\lambda,k}\ \ln
+    \left(
+      \frac{k}{\lambda}
+    \right)
+    + \sum^N_{i=1}(1-k)\ln
 \left(
   \frac{v_i}{\lambda}
 \right)+
-\left(
+\left(n
   \frac{v_i}{\lambda}
 \right)^k
 }\]
+\begin{center}
+with $\lambda > 0$, $v>0$ and $k>0$
+\end{center}
 
 \paragraph{1.e)}
-\[\mathbb{E}\{P\}=\int_0^{P(v_\mathrm{max}} P(v)\cdot p(P=P(v))\mathrm{d}v = \int_0^{v_\mathrm{max}} P(v)\cdot p(v)\mathrm{d}v\] \\
-\[\approx \sum_{i=1}^{N-1}\frac{P_{i+1}-P_i}{2}\cdot (p(v_{i+1}) - p(v_i))
- \]
+\[\mathbb{E}\{P\}=\int_0^{P(v_\mathrm{max})} P(v)\cdot p(P=P(v))\mathrm{d}v = \int_0^{v_\mathrm{max}} P(v)\cdot p(v)\mathrm{d}v\] \\
+\[\approx \sum_{i=1}^{N-1}\frac{P_{i+1}\cdot p(v_{i+1})-P_i\cdot p(v_i)}{2}\cdot (v_{i+1} - v_i)\hspace{12pt} \mathrm{(Trapezoidal\ rule)}
+\]
+\begin{center}
+  with $v_N=v_\mathrm{max}$
+\end{center}
+Usually, the integral should go from $-\infty$ to $+\infty$, but since $P(v)=0$ for $v\ge v_\mathrm{max}$ and $v>0$, integrating from 0 to $v_\mathrm{max}$ is sufficient.
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
