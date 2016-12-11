@@ -1,0 +1,93 @@
+\documentclass[12pt, a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+
+\newcommand{\argmin}{\arg\!\min} 
+
+\begin{document}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{c|c|c}
+    Michael Floßmann & Stephan Schraivogel & Hendrik Vloet \\ %\hline
+    4348852 & 4318010 & 4324249
+  \end{tabular}
+\end{table}
+\section*{Exercise Sheet 6}
+\paragraph{1.a)}
+\begin{align*}
+  f(\lambda,k):&= -\ln
+  \left(
+    \prod^N_{i=1}p(v_i|\lambda,k)
+  \right) \\
+  &= -\sum^N_{i=i}\ln(p(v_i|\lambda,k)) \\
+  &= -\sum^N_{i=1}\ln
+  \left(
+    \frac{k}{\lambda}
+    \left(
+      \frac{v}{\lambda}
+    \right)^{k-1} \cdot 
+    \exp
+    \left(-
+      \left(
+        \frac{v_i}{\lambda}
+      \right)^k
+      \right)
+  \right) \\
+  &= -\sum^N_{i=1}\ln
+  \left(
+    \frac{k}{\lambda}
+  \right)
+  + (k-1)\ln
+  \left(
+\frac{v_i}{\lambda}
+  \right) + \ln
+  \left(
+    \exp
+    \left(
+      -\frac{v_i}{\lambda}
+    \right)
+  \right) \\
+  &=-N\cdot\ln
+  \left(
+    \frac{\lambda}{k}
+  \right)-\sum^N_{i=1}(k-1)\ln
+  \left(
+    \frac{v_i}{\lambda}
+  \right) -
+  \left(
+    \frac{v_i}{\lambda}
+  \right)^k \\
+\Aboxed{\Rightarrow f(\lambda,k) &= N\cdot\ln
+  \left(
+    \frac{k}{\lambda}
+  \right)+\sum^N_{i=1}(1-k)\ln
+  \left(
+    \frac{v_i}{\lambda}
+  \right) +
+  \left(
+    \frac{v_i}{\lambda}
+  \right)^k}
+\end{align*}
+
+\paragraph{1.b)}
+\[\boxed{
+[\hat{\lambda},\hat{k}]=\argmin_{\lambda,k}\sum^N_{i=1}(1-k)\ln
+\left(
+  \frac{v_i}{\lambda}
+\right)+
+\left(
+  \frac{v_i}{\lambda}
+\right)^k
+}\]
+
+\paragraph{1.e)}
+\[\mathbb{E}\{P\}=\int_0^{P(v_\mathrm{max}} P(v)\cdot p(P=P(v))\mathrm{d}v = \int_0^{v_\mathrm{max}} P(v)\cdot p(v)\mathrm{d}v\] \\
+\[\approx \sum_{i=1}^{N-1}\frac{P_{i+1}-P_i}{2}\cdot (p(v_{i+1}) - p(v_i))
+ \]
+
+\end{document}
